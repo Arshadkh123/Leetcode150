@@ -7,10 +7,11 @@ class Solution {
         while(e!=0)
         {
             j = e%10;
+            num =(num*10) + j;
             e = e/10;
-            num = num*10 + j;
         }
-        if(num == x)return true;
-        else return false;
+        if(num == x)
+        return true;
+        return false;
     }
 }
