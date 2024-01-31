@@ -6,11 +6,13 @@ class Solution {
         {
             int val=target-nums[i];
             if(mp.containsKey(val)){
-                return new int[]{mp.get(val), i};
+                int index=mp.get(val);
+                if(index==i)continue;
+                return new int[]{i, index};
             }
 
-            mp.put(nums[i], i);
+            mp.put(nums[i], i);//filling Hash map
         }
-        return new int[]{};
+        return new int[]{-1,-1};
     }
 }
