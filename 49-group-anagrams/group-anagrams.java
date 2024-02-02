@@ -3,15 +3,18 @@ class Solution {
         //creating Map to store the sorted character used as a key
         Map<String, List<String>> mp =new HashMap<>();
         for(String s:strs){
-         char arr[]=s.toCharArray();
-         Arrays.sort(arr);
-         String sorted= new String(arr);// taking sorted string
-         if(!mp.containsKey(sorted)){
-             mp.put(sorted, new LinkedList<String>());
+         char freq[]=new char[26];
+         //Arrays.sort(arr);
+         for(char val:s.toCharArray()){
+             freq[val-'a']++;
          }
-         mp.get(sorted).add(s);
+         String val= new String(freq);
+         if(!mp.containsKey(val)){
+             mp.put(val, new ArrayList<>());
+         }
+         mp.get(val).add(s);
         }
-
-        return new LinkedList<>(mp.values());
+        //res.addAll
+        return new ArrayList<>(mp.values());
     }
 }
