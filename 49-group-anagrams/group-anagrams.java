@@ -4,7 +4,6 @@ class Solution {
         Map<String, List<String>> mp =new HashMap<>();
         for(String s:strs){
          char freq[]=new char[26];
-         //Arrays.sort(arr);
          for(char val:s.toCharArray()){
              freq[val-'a']++;
          }
@@ -14,7 +13,7 @@ class Solution {
          }
          mp.get(val).add(s);
         }
-        //res.addAll
+        
         return new ArrayList<>(mp.values());
     }
 }
