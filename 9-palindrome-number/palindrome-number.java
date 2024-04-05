@@ -9,7 +9,7 @@ class Solution {
        }
        if(rev==p)
        return true;
-       else 
+       //else 
        return false;
 
     }
