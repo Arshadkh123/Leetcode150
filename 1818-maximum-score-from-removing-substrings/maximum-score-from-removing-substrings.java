@@ -3,7 +3,7 @@ class Solution {
        int big=x > y?x:y;
        int small=big==x?y:x;
        char fst=big == x?'a':'b';
-       char snd= fst== 'a'?'b':'a';
+       char snd=fst== 'a'?'b':'a';
        int score=0;
        Stack<Character> s1=new Stack();
        for(char c : s.toCharArray()){
