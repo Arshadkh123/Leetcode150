@@ -1,38 +1,31 @@
 class Solution {
 
-    public List<Integer> survivedRobotsHealths(
-        int[] positions,
-        int[] healths,
-        String directions
-    ) {
+    public List<Integer> survivedRobotsHealths(int[] positions,int[] healths,String directions) {
         int n = positions.length;
-        Integer[] indices = new Integer[n];
+        Integer[] actual_index = new Integer[n];
         List<Integer> result = new ArrayList<>();
-        Stack<Integer> stack = new Stack<>();
+        Stack<Integer> stk = new Stack<>();
 
-        for (int index = 0; index < n; ++index) {
-            indices[index] = index;
+        for (int i = 0; i < n; i++) {
+            actual_index[i] = i;
         }
 
-        Arrays.sort(
-            indices,
-            (lhs, rhs) -> Integer.compare(positions[lhs], positions[rhs])
-        );
+        Arrays.sort(actual_index,(lhs, rhs) -> Integer.compare(positions[lhs], positions[rhs]));
 
-        for (int currentIndex : indices) {
+        for (int currentIndex : actual_index) {
             // Add right-moving robots to the stack
             if (directions.charAt(currentIndex) == 'R') {
-                stack.push(currentIndex);
+                stk.push(currentIndex);
             } else {
-                while (!stack.isEmpty() && healths[currentIndex] > 0) {
+                while (!stk.isEmpty() && healths[currentIndex] > 0) {
                     // Pop the top robot from the stack for collision check
-                    int topIndex = stack.pop();
+                    int topIndex = stk.pop();
 
                     // Top robot survives, current robot is destroyed
                     if (healths[topIndex] > healths[currentIndex]) {
                         healths[topIndex] -= 1;
                         healths[currentIndex] = 0;
-                        stack.push(topIndex);
+                        stk.push(topIndex);
                     } else if (healths[topIndex] < healths[currentIndex]) {
                         // Current robot survives, top robot is destroyed
                         healths[currentIndex] -= 1;
@@ -47,9 +40,9 @@ class Solution {
         }
 
         // Collect surviving robots
-        for (int index = 0; index < n; ++index) {
-            if (healths[index] > 0) {
-                result.add(healths[index]);
+        for (int i = 0; i < n; i++) {
+            if (healths[i] > 0) {
+                result.add(healths[i]);
             }
         }
         return result;
